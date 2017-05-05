@@ -80,7 +80,16 @@ namespace CausalityExample
 					using (Variable.IfNot(doB[N]))
 					{
 						// Set B to a noisy version of A
-						B[N] = A[N] != (Variable.Bernoulli(q));
+						//B[N] = A[N] != (Variable.Bernoulli(q));
+                        var x = Variable.Bernoulli(q);
+                        using (Variable.If(x))
+                        {
+                            B[N] = !A[N];
+                        }
+                        using (Variable.IfNot(x))
+                        {
+                            B[N] = A[N];
+                        }
 					}
 				}
 			}
@@ -97,8 +106,17 @@ namespace CausalityExample
 						// Draw B from uniform prior
 						B[N] = Variable.Bernoulli(0.5);
 					}
-					// Set A to a noisy version of B
-					A[N] = B[N] != (Variable.Bernoulli(q));
+                    // Set A to a noisy version of B
+                    //A[N] = B[N] != (Variable.Bernoulli(q));
+                    var x = Variable.Bernoulli(q);
+                    using (Variable.If(x))
+                    {
+                        A[N] = !B[N];
+                    }
+                    using (Variable.IfNot(x))
+                    {
+                        A[N] = B[N];
+                    }
 				}
 			}
 
