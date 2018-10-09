@@ -6,3 +6,5 @@ Suppose you have two binary random variables - A and B. You have some number of 
 The program is written in Infer.NET
 
 Taken from https://blogs.msdn.microsoft.com/infernet_team_blog/2012/01/27/causal-inference-with-infer-net/
+
+Updated to use open source Infer.NET.
